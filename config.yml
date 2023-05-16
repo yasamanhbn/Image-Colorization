@@ -1,15 +1,9 @@
 # Model hyperparameters
 learning_rate: 0.001
 batch_size: 32
-num_epochs: 1
 gamma: 0.75
-momentum: 0
-model_save_path: ./savedModel
-model_load_path: ./savedModel/ckpt_resnext_epoch3.ckpt
-cnnBlockType: inception
-
+num_epochs: 1
 # Dataset parameters
 dataset:
-  path: F:\Master\Deep learning\HW\hw2\datasets\cifar10/
-  num_classes: 10
+  path: F:/Master/Deep learning/HW/hw3/Q1/datasets/datas
   train_split: 0.2
