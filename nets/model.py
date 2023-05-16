@@ -74,6 +74,24 @@ class CNNBlock(nn.Module):
             nn.ReLU(inplace=True),
             nn.Conv2d(256, 256, kernel_size=3, stride=1, padding=1, bias=True),
             nn.ReLU(inplace=True),
+            nn.Conv2d(256, 313, kernel_size=1, stride=1, padding=0, bias=True)
         )
 
-        self.conv9 = nn.Conv2d(256, 313, kernel_size=1, stride=1, padding=0, bias=True)
+        self.softmax = nn.Softmax(dim=1)
+        self.result = nn.Conv2d(313, 2, kernel_size=1, padding=0, dilation=1, stride=1, bias=False)
+        self.upsample4 = nn.Upsample(scale_factor=4)
+
+    def forward(self, input):
+        # out = self.normalize_l(input)
+        out = self.conv1(input)
+        out = self.conv2(out)
+        out = self.conv3(out)
+        out = self.conv4(out)
+        out = self.conv5(out)
+        out = self.conv6(out)
+        out = self.conv7(out)
+        out = self.conv8(out)
+        out = self.softmax(out)
+        out = self.result(out)
+        # return self.unnormalize_ab(self.upsample4(out))
+        return self.upsample4(out)
