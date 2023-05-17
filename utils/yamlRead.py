@@ -17,11 +17,19 @@ def read_configs():
     return learning_rate, batch_size, num_epochs, dataset_path, train_split, gamma
 
 
+# def read_configs():
+# # Access hyperparameters
+#     learning_rate = 0.001
+#     batch_size = 64
+#     num_epochs = 10
+#     gamma = 0.75
 
-def get_datasetPath():
-    with open('config.yml') as f:
-        config = yaml.load(f, Loader=yaml.FullLoader)
-    return config['dataset']['path']
+# # Access dataset parameters
+#     dataset_path = '/content/landscapes'
+#     train_split = 0.2
+    
+#     return learning_rate, batch_size, num_epochs, dataset_path, train_split, gamma
+
 
 
 

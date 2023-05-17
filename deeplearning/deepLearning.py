@@ -44,6 +44,7 @@ def train(
         for _, images in loop_train:
             images = images.to(device)
             labels_pred = model(images[:, 0:1, :, :])
+            print(labels_pred.shape)
             loss = criterion(labels_pred, images[:, 1:3 , :, :])
             optimizer.zero_grad()
             loss.backward()

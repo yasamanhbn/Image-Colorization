@@ -4,8 +4,8 @@ import cv2
 import matplotlib.pyplot as plt
 from skimage import color
 np.random.seed(1)
-HEIGHT=224
-WIDTH=224
+HEIGHT=256
+WIDTH=256
 import torch
 
 def preprocessing(ImagePath):
