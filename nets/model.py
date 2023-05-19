@@ -82,8 +82,8 @@ class CNNBlock(nn.Module):
         self.upsample4 = nn.Upsample(scale_factor=4)
 
     def forward(self, input):
-        # out = self.normalize_l(input)
-        out = self.conv1(input)
+        out = input / 100
+        out = self.conv1(out)
         out = self.conv2(out)
         out = self.conv3(out)
         out = self.conv4(out)
@@ -93,5 +93,5 @@ class CNNBlock(nn.Module):
         out = self.conv8(out)
         out = self.softmax(out)
         out = self.result(out)
-        # return self.unnormalize_ab(self.upsample4(out))
-        return self.upsample4(out)
+        return self.upsample4(out) * 128
+        # return self.upsample4(out)

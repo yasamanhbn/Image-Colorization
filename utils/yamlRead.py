@@ -19,7 +19,7 @@ def read_configs():
 
 # def read_configs():
 # # Access hyperparameters
-#     learning_rate = 0.001
+#     learning_rate = 0.01
 #     batch_size = 64
 #     num_epochs = 10
 #     gamma = 0.75

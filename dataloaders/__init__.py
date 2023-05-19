@@ -1,1 +1,1 @@
-from .loader import get_train_dataloaders
+from .loader import get_dataloaders
