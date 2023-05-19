@@ -21,7 +21,7 @@ def train():
     )
     print(val_loss)
     print(train_loss)
-    # utils.plot_acc_loss(train_acc, train_loss, val_acc, val_loss)
+    utils.plot_loss(train_loss, val_loss)
     return model, optimizer, testdataset, device
 
 if __name__ == "__main__":

@@ -28,7 +28,7 @@ def test(model, optimizer, test_dataset, device):
             predicted_rgb_img = (255 * predicted_rgb_img).astype("uint8")
             predicted_rgb_batch.append(predicted_rgb_img)
         # plot images
-        fig, ax = plt.subplots(figsize=(10, 10), nrows=len(image_inds), ncols=2)
+        _, ax = plt.subplots(figsize=(10, 10), nrows=len(image_inds), ncols=2)
         for i in range(len(image_inds)):
             ax[i][0].imshow(predicted_rgb_batch[i])
             ax[i][0].title.set_text('re-colored')

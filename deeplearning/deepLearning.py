@@ -56,8 +56,7 @@ def train(
 
             loop_train.set_description(f"Train - iteration : {epoch}")
             loop_train.set_postfix(
-                loss_batch="{:.4f}".format(loss.detach().item()),
-                avg_train_loss_till_current_batch="{:.4f}".format(average_train_loss.avg),
+                avg_train_loss="{:.4f}".format(average_train_loss.avg),
                 refresh=True,
             )
         
@@ -74,8 +73,7 @@ def train(
                 average_val_loss.update(loss.item(), images.size(0))
                 loop_val.set_description(f"val - iteration : {epoch}")
                 loop_val.set_postfix(
-                    loss_batch="{:.4f}".format(loss.detach().item()),
-                    avg_val_loss_till_current_batch="{:.4f}".format(average_val_loss.avg),
+                    avg_val_loss="{:.4f}".format(average_val_loss.avg),
                     refresh=True
                 )
                 del images, labels_pred
