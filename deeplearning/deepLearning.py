@@ -27,7 +27,7 @@ def train(
     model = model.to(device)
 
     # get loss function from losses module
-    criterion = losses.CE_loss()
+    criterion = losses.mse_loss()
 
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
@@ -62,6 +62,14 @@ def train(
         
         train_loss.append(average_train_loss.avg)
         
+        if epoch % 5 == 0 :
+            utils.save_model(
+                file_path="./",
+                file_name=f"ckpt_epoch{epoch}.ckpt",
+                model=model,
+                optimizer=optimizer,
+            )
+
         model.eval()
         with torch.no_grad():
             loop_val = tqdm(enumerate(val_loader, 1), total=len(val_loader), desc="val", position=0, leave=True)

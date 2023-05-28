@@ -4,11 +4,25 @@ import matplotlib.pyplot as plt
 from skimage import color, io
 import torchvision.utils
 import cv2
+import losses
 
 
-def test(model, optimizer, test_dataset, device):
+def test(model, optimizer, test_dataset, device, test_loader):
+    model.eval()
+    test_loss_avg, num_batches = 0, 0
+    crit = losses.mse_loss()
+    for _, lab_batch in enumerate(test_loader, 1):
+        with torch.no_grad():
+            lab_batch = lab_batch.to(device)
+            predicted_ab_batch = model(lab_batch[:, 0:1, :, :])
+            loss = crit(predicted_ab_batch, lab_batch[:, 1:3, :, :])
+            test_loss_avg += loss.item()
+            num_batches += 1
+    test_loss_avg /= num_batches
+    print('average loss: %f' % (test_loss_avg))
+
     with torch.no_grad():
-        image_inds = [0, 1]
+        image_inds = [0, 2, 4, 6, 8]
         lab_batch = torch.stack([test_dataset[i] for i in image_inds])
         # predict colors (ab channels)
         lab_batch = lab_batch.to(device)
